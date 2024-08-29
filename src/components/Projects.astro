@@ -1,4 +1,6 @@
 ---
+import AngularIcon from '../assets/icons/AngularIcon.astro';
+import CodeIcon from '../assets/icons/CodeIcon.astro';
 import ProjectItem from './ProjectItem.astro';
 
 const PROJECTS = [
@@ -9,7 +11,12 @@ const PROJECTS = [
     image: "/src/assets/images/logo-tomansy.webp",
     link: "https://tomansy.netlify.app/",
     github: "https://github.com/Luis0714/TomansyFrontend",
-    tags: ["Angular", ".Net 8", "Ocelot", "RabbitMQ"],
+    tags: [
+      { name: "Net 8", icon: CodeIcon },
+      { name: "Microservicios", icon: CodeIcon },
+      { name: "API Gateway", icon: CodeIcon },
+      { name: "Ocelot", icon: CodeIcon },
+    ],
   },
   {
     title: "React Ecommerce",
@@ -18,7 +25,11 @@ const PROJECTS = [
     image: "/src/assets/images/logo-ecommerce.webp",
     link: "https://react-ecommerce-tomansy.netlify.app/",
     github: "https://github.com/Luis0714/ecommerce-react-vite",
-    tags: ["React", "Vite", "TailwindCSS"],
+    tags: [
+      { name: "React", icon: CodeIcon },
+      { name: "Vite", icon: CodeIcon },
+      { name: "TailwindCSS", icon: CodeIcon },
+    ],
   },
   {
     title: "Home Heal",
@@ -27,7 +38,12 @@ const PROJECTS = [
     image: "/src/assets/images/logo-home-heal.webp",
     link: "https://azure.website.homeheal.com/",
     github: "https://github.com/Luis0714/home_heal_frontend",
-    tags: ["Angular", "FastApi", "NodeJs", "Websockets"],
+    tags: [
+      { name: "Angular", icon: AngularIcon },
+      { name: "FastApi", icon: CodeIcon },
+      { name: "NodeJs", icon: CodeIcon },
+      { name: "Websockets", icon: CodeIcon },
+    ],
   },
   {
     title: "Diabecare App",
@@ -35,7 +51,10 @@ const PROJECTS = [
     image: "/src/assets/images/logo-diabecare.webp",
     link: "https://diabecare.netlify.app/",
     github: "https://github.com/Luis0714/diabecareFrontend",
-    tags: ["Ionic", "Firebase Notification Push", "Sql Server"],
+    tags: [{name: "Ionic", icon: CodeIcon}, 
+            {name: "Firebase", icon: CodeIcon}, 
+            {name: "FastApi", icon: CodeIcon}
+    ],
   }
 ];
 ---
