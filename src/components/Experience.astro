@@ -1,0 +1,44 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Septiembre 2024",
+    title: "Desarrollador FullStack especializado en .NET y Angular",
+    description:
+      "Tengo una sólida experiencia en el desarrollo de aplicaciones web utilizando .NET y Angular. Me apasionan las arquitecturas limpias y el desarrollo de software escalable y mantenible.",
+    link: "https://www.linkedin.com/in/martinezestremor/",
+  },
+  {
+    date: "Septiembre 2023",
+    title: "Pasantía de Investigación en el Instituto Politécnico do Porto",
+    description:
+      "Fui seleccionado para una pasantía de investigación en el Instituto Politécnico do Porto, donde aprendí nuevas tecnologías y tuve la oportunidad de experimentar la cultura portuguesa.",
+    link: "https://www.ipp.pt/international/international",
+  },
+  {
+    date: "2023 - Presente",
+    title: "Monitor de Programación 3 en la Universidad de Caldas",
+    description:
+      "Soy monitor de la materia de Programación 3 en la Universidad de Caldas. Aquí, comparto mi conocimiento y experiencia con mis compañeros, ayudando en su formación académica.",
+    link: "https://virtual.ucaldas.edu.co/",
+  },
+  {
+    date: "Agosto 2022 - Presente",
+    title: "Desarrollador en Opitech",
+    description:
+      "Trabajo como desarrollador en Opitech, una empresa de desarrollo de software. Me desempeño en la creación de aplicaciones grandes y mantenibles utilizando tecnologías como .NET y Angular.",
+    link: "https://www.opitech.com.co/inicio",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>

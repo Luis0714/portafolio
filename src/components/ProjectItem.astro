@@ -1,0 +1,42 @@
+---
+import GitHubIcon from "../assets/icons/GitHubIcon.astro";
+import EthernetIcon from "../assets/icons/EthernetIcon.astro";
+import SocialBadge from "./SocialBadge.astro";
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  link: string;
+  github: string;
+}
+
+const { title, description, image, tags, link, github } = Astro.props as Props;
+---
+
+<div class="bg-gray-800 dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+  <img class="w-full h-48 object-cover object-center" src={image} alt={title} />
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-yellow-100 dark:text-white">
+      {title}
+    </h3>
+    <p
+      class="mb-4 text-base font-normal text-gray-300 dark:text-gray-200 text-pretty"
+    >
+      {description}
+    </p>
+    <nav class="flex gap-2">
+      {tags.map((tag) => <Tag>{tag}</Tag>)}
+    </nav>
+    <nav class="flex gap-2 mt-4">
+      <SocialBadge href={link}
+        >Ver Proyecto <EthernetIcon class="size-4" />
+      </SocialBadge>
+      <SocialBadge href={github}
+        >Ver Código <GitHubIcon class="size-4" /></SocialBadge
+      >
+    </nav>
+  </div>
+</div>
