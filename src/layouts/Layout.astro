@@ -14,11 +14,32 @@ const { description, title } = Astro.props;
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Luis Andrés Martínez Estremor" />
+    <meta name="robots" content="index, follow" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph (Facebook, LinkedIn...) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://estremor.com" />
+    <meta property="og:image" content="https://estremor.com/preview.webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://estremor.com/preview.webp" />
   </head>
   <body>
     <div
@@ -31,7 +52,7 @@ const { description, title } = Astro.props;
   </body>
   <script>
     import { inject } from "@vercel/analytics";
-    import { injectSpeedInsights } from '@vercel/speed-insights';
+    import { injectSpeedInsights } from "@vercel/speed-insights";
 
     inject();
     injectSpeedInsights();
