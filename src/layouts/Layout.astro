@@ -15,7 +15,7 @@ const { description, title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Luis Andrés Martínez Estremor" />
@@ -23,23 +23,58 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="https://estremor.com/favicon.svg" />
+    <link rel="alternate icon" href="https://estremor.com/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://estremor.com/apple-touch-icon.png" />
+    <link rel="manifest" href="https://estremor.com/site.webmanifest" />
 
     <!-- Open Graph (Facebook, LinkedIn...) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://estremor.com" />
-    <meta property="og:image" content="https://estremor.com/preview.webp" />
+    <meta
+      property="og:image"
+      content="https://estremor.com/images/favicon.svg"
+    />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://estremor.com/preview.webp" />
+    <meta
+      name="twitter:image"
+      content="https://estremor.com/images/favicon.svg"
+    />
+
+    <!-- WhatsApp -->
+    <meta property="og:site_name" content="Estremor" />
+    <meta property="og:image:alt" content="Logo de Estremor" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="msapplication-TileColor" content="#050505" />
+    <meta name="msapplication-TileImage" content="/mstile-150x150
+.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest+Variable:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/animations.css" />
+    <link rel="stylesheet" href="/styles/typography.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/sections.css" />
+    <link rel="stylesheet" href="/styles/animations.css" />
+    <link rel="stylesheet" href="/styles/scrollbar.css" />
+    <link rel="stylesheet" href="/styles/scrollbar.css" />
+    <link rel="stylesheet" href="/styles/animations.css" />
+    <link rel="stylesheet" href="/styles/typography.css" />
   </head>
   <body>
     <div
