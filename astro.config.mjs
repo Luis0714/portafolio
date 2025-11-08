@@ -14,7 +14,9 @@ export default defineConfig({
     }),
   ],
   output: "server",
-  adapter: vercel(),
+  adapter: vercel({
+    functionPerRoute: false,
+  }),
   devToolbar: {
     enabled: false,
   },
