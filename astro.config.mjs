@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
@@ -13,10 +12,7 @@ export default defineConfig({
       lastmod: new Date(),
     }),
   ],
-  output: "server",
-  adapter: vercel({
-    functionPerRoute: false,
-  }),
+  output: "static",
   devToolbar: {
     enabled: false,
   },
