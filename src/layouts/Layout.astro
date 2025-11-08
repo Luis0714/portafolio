@@ -9,7 +9,11 @@ interface Props {
   canonicalUrl?: string;
 }
 
-const { description, title, canonicalUrl = "https://estremor.com" } = Astro.props;
+const {
+  description,
+  title,
+  canonicalUrl = "https://estremor.com",
+} = Astro.props;
 const currentUrl = Astro.url.href;
 ---
 
@@ -24,7 +28,10 @@ const currentUrl = Astro.url.href;
     <meta name="author" content="Luis Andrés Martínez Estremor" />
     <meta name="robots" content="index, follow" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="keywords" content="desarrollador .NET, desarrollador Angular, desarrollador web Colombia, programador .NET, desarrollador full stack, arquitectura limpia, SOLID, TypeScript, C#, Luis Martínez Estremor, portafolio desarrollador" />
+    <meta
+      name="keywords"
+      content="desarrollador .NET, desarrollador Angular, desarrollador web Colombia, programador .NET, desarrollador full stack, arquitectura limpia, SOLID, TypeScript, C#, Luis Martínez Estremor, portafolio desarrollador"
+    />
     <meta name="geo.region" content="CO" />
     <meta name="geo.placename" content="Manizales, Colombia" />
     <meta name="geo.position" content="5.0697;-75.5138" />
@@ -32,9 +39,21 @@ const currentUrl = Astro.url.href;
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="https://estremor.com/images/favicon.svg" />
-    <link rel="alternate icon" href="https://estremor.com/images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://estremor.com/images/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://estremor.com/images/favicon.svg"
+    />
+    <link
+      rel="alternate icon"
+      href="https://estremor.com/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://estremor.com/images/apple-touch-icon.png"
+    />
     <link rel="manifest" href="https://estremor.com/images/site.webmanifest" />
 
     <!-- Open Graph (Facebook, LinkedIn...) -->
@@ -43,26 +62,29 @@ const currentUrl = Astro.url.href;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content="es_CO" />
+    <meta property="og:image" content="https://estremor.com/preview.webp" />
     <meta
-      property="og:image"
+      property="og:image:secure_url"
       content="https://estremor.com/preview.webp"
     />
-    <meta property="og:image:secure_url" content="https://estremor.com/preview.webp" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:creator" content="@estremordev" />
+    <meta name="twitter:image" content="https://estremor.com/preview.webp" />
     <meta
-      name="twitter:image"
-      content="https://estremor.com/preview.webp"
+      name="twitter:image:alt"
+      content="Luis Andrés Martínez Estremor - Desarrollador .NET y Angular"
     />
-    <meta name="twitter:image:alt" content="Luis Andrés Martínez Estremor - Desarrollador .NET y Angular" />
 
     <!-- WhatsApp -->
     <meta property="og:site_name" content="Estremor" />
-    <meta property="og:image:alt" content="Luis Andrés Martínez Estremor - Desarrollador .NET y Angular" />
+    <meta
+      property="og:image:alt"
+      content="Luis Andrés Martínez Estremor - Desarrollador .NET y Angular"
+    />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -90,61 +112,100 @@ const currentUrl = Astro.url.href;
     <link rel="stylesheet" href="/styles/typography.css" />
 
     <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Luis Andrés Martínez Estremor",
-      "alternateName": "Estremor",
-      "jobTitle": "Desarrollador Full Stack",
-      "description": description,
-      "url": "https://estremor.com",
-      "image": "https://estremor.com/images/luisandres.jpg",
-      "email": "luian.me0714@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Manizales",
-        "addressRegion": "Caldas",
-        "addressCountry": "CO"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/martinezestremor/",
-        "https://github.com/Luis0714",
-        "https://www.youtube.com/@ESTREMORDEV",
-        "https://www.tiktok.com/@estremordev",
-        "https://kick.com/estremordev",
-        "https://www.facebook.com/estremordev"
-      ],
-      "knowsAbout": [
-        ".NET",
-        "Angular",
-        "TypeScript",
-        "C#",
-        "Arquitectura Limpia",
-        "SOLID",
-        "Desarrollo Web",
-        "Full Stack Development"
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Desarrollador autodidacta desde 2022"
-      }
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Estremor - Portafolio de Luis Andrés Martínez Estremor",
-      "url": "https://estremor.com",
-      "description": description,
-      "author": {
-        "@type": "Person",
-        "name": "Luis Andrés Martínez Estremor"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://estremor.com/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Luis Andrés Martínez Estremor",
+          alternateName: "Estremor",
+          jobTitle: "Desarrollador Full Stack",
+          description: description,
+          url: "https://estremor.com",
+          image: "https://estremor.com/images/luisandres.jpg",
+          email: "luian.me0714@gmail.com",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Manizales",
+            addressRegion: "Caldas",
+            addressCountry: "CO",
+          },
+          sameAs: [
+            "https://www.linkedin.com/in/martinezestremor/",
+            "https://github.com/Luis0714",
+            "https://www.youtube.com/@ESTREMORDEV",
+            "https://www.tiktok.com/@estremordev",
+            "https://kick.com/estremordev",
+            "https://www.facebook.com/estremordev",
+          ],
+          knowsAbout: [
+            ".NET",
+            "Angular",
+            "TypeScript",
+            "C#",
+            "Arquitectura Limpia",
+            "SOLID",
+            "Desarrollo Web",
+            "Full Stack Development",
+          ],
+        },
+        null,
+        2
+      )}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Estremor - Portafolio de Luis Andrés Martínez Estremor",
+          url: "https://estremor.com",
+          description: description,
+          author: {
+            "@type": "Person",
+            name: "Luis Andrés Martínez Estremor",
+          },
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: "https://estremor.com/?s={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+          },
+        },
+        null,
+        2
+      )}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            name: "Luis Andrés Martínez Estremor",
+            alternateName: "Estremor",
+            jobTitle: "Desarrollador Full Stack",
+            description: description,
+            url: "https://estremor.com",
+            image: "https://estremor.com/images/luisandres.jpg",
+            email: "luian.me0714@gmail.com",
+            sameAs: [
+              "https://www.linkedin.com/in/martinezestremor/",
+              "https://github.com/Luis0714",
+              "https://www.youtube.com/@ESTREMORDEV",
+            ],
+          },
+        },
+        null,
+        2
+      )}
+    />
   </head>
   <body>
     <div
@@ -179,11 +240,11 @@ const currentUrl = Astro.url.href;
     min-height: 100vh;
     transition: background-color 0.3s ease;
   }
-  
+
   body.dark {
     background: #050505;
   }
-  
+
   @media (prefers-color-scheme: dark) {
     body:not(.light) {
       background: #050505;
