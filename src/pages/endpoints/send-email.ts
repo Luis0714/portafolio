@@ -10,7 +10,7 @@ const response = (
   }: { status?: number; statusText?: string; headers?: Headers }
 ) => new Response(body, { status, statusText, headers });
 
-export const POST: APIRoute = async ({ params, request }) => {
+export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
   console.log(body);
   const { email, name, message } = body;
