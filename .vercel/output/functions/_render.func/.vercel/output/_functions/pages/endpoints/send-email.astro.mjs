@@ -1,27 +1,22 @@
-import type { APIRoute } from "astro";
-import { Resend } from "resend";
+import { Resend } from 'resend';
+export { renderers } from '../../renderers.mjs';
 
-const response = (
-  body: string,
-  {
-    status,
-    statusText,
-    headers,
-  }: { status?: number; statusText?: string; headers?: Headers }
-) => new Response(body, { status, statusText, headers });
-
-export const POST: APIRoute = async ({ request }) => {
+const response = (body, {
+  status,
+  statusText,
+  headers
+}) => new Response(body, { status, statusText, headers });
+const POST = async ({ request }) => {
   const body = await request.json();
   console.log(body);
   const { email, name, message } = body;
   const { error } = await sendEmail(name, email, message);
   return manageResponse(error);
 };
-
-async function sendEmail(name: string, email: string, message: string) {
-  const key = import.meta.env.PUBLIC_RESEND_KEY;
-  const emailSender = import.meta.env.PUBLIC_RESEND_EMAIL_SENDER;
-  const emailReceiver = import.meta.env.PUBLIC_RESEND_EMAIL_RECEIVER;
+async function sendEmail(name, email, message) {
+  const key = undefined                                 ;
+  const emailSender = undefined                                          ;
+  const emailReceiver = undefined                                            ;
   const subject = "Mensaje desde formulario de contacto del portafolio";
   console.log({ key, emailSender, emailReceiver });
   const template = getTemplate({ name, email, message });
@@ -29,20 +24,18 @@ async function sendEmail(name: string, email: string, message: string) {
   const { data, error } = await resend.emails.send({
     from: emailSender,
     to: [emailReceiver],
-    subject: subject,
-    html: template,
+    subject,
+    html: template
   });
   return { data, error };
 }
-
-function manageResponse(error: any) {
+function manageResponse(error) {
   if (error) {
     return response("Error al enviar el mensaje", { status: 500 });
   }
   return response("Mensaje enviado correctamente", { status: 200 });
 }
-
-function getTemplate(information: any): string {
+function getTemplate(information) {
   return `
           <!DOCTYPE html>
           <html lang="es">
@@ -104,3 +97,12 @@ function getTemplate(information: any): string {
             </html>
           `;
 }
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  POST
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
