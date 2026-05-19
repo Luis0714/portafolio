@@ -1,0 +1,100 @@
+---
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/images/luisandres.jpg";
+
+const alt = "Luis Andrés Martínez Estremor - Desarrollador .NET y Angular";
+---
+
+<button
+  type="button"
+  id="profile-photo-trigger"
+  class="group relative mx-auto block shrink-0 cursor-zoom-in rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 sm:mx-0"
+  aria-label="Ver foto de perfil completa"
+  aria-haspopup="dialog"
+>
+  <Image
+    src={profilePhoto}
+    alt={alt}
+    width={160}
+    height={160}
+    widths={[128, 160, 192, 256]}
+    sizes="(max-width: 640px) 7rem, 9rem"
+    format="webp"
+    quality={88}
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+    class="relative size-28 rounded-full border-2 border-gray-200 object-cover object-center transition-transform group-hover:scale-[1.02] dark:border-neutral-700 sm:size-36"
+  />
+  <span
+    class="absolute bottom-0 right-0 flex size-8 items-center justify-center rounded-full border-2 border-white bg-gray-800 text-white shadow-sm transition-transform group-hover:scale-110 dark:border-neutral-800 dark:bg-neutral-700 sm:size-9"
+    aria-hidden="true"
+  >
+    <svg class="size-4 sm:size-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
+      ></path>
+    </svg>
+  </span>
+</button>
+
+<dialog
+  id="profile-photo-modal"
+  class="profile-photo-modal w-[min(92vw,28rem)] max-w-none border-0 bg-transparent p-0 shadow-none backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+  aria-label="Foto de perfil ampliada"
+>
+  <div class="relative overflow-hidden rounded-2xl bg-neutral-900 shadow-2xl ring-1 ring-white/10">
+    <button
+      type="button"
+      id="profile-photo-close"
+      class="absolute right-3 top-3 z-10 flex size-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+      aria-label="Cerrar foto"
+    >
+      <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <Image
+      src={profilePhoto}
+      alt={alt}
+      width={800}
+      widths={[400, 600, 800, 1000]}
+      sizes="min(92vw, 28rem)"
+      format="webp"
+      quality={92}
+      class="block h-auto max-h-[85vh] w-full object-contain"
+    />
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    const trigger = document.getElementById("profile-photo-trigger");
+    const dialog = document.getElementById("profile-photo-modal") as HTMLDialogElement | null;
+    const closeBtn = document.getElementById("profile-photo-close");
+
+    const openModal = () => {
+      dialog?.showModal();
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      dialog?.close();
+      document.body.style.overflow = "";
+      trigger?.focus();
+    };
+
+    trigger?.addEventListener("click", openModal);
+    closeBtn?.addEventListener("click", closeModal);
+
+    dialog?.addEventListener("click", (event) => {
+      if (event.target === dialog) closeModal();
+    });
+
+    dialog?.addEventListener("close", () => {
+      document.body.style.overflow = "";
+    });
+  })();
+</script>

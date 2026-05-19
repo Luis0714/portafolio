@@ -1,12 +1,13 @@
 ---
 import LinkedInIcon from "../assets/icons/LinkedInIcon.astro";
+import ProfilePhoto from "../components/ProfilePhoto.astro";
 import GitHubIcon from "../assets/icons/GitHubIcon.astro";
 import SendMailICon from "../assets/icons/SendMailIcon.astro";
-import Badge from "../components/Badge.astro";
 import SocialBadge from "../components/SocialBadge.astro";
 import Layout from "../layouts/Layout.astro";
 import Experience from "../components/Experience.astro";
 import SectionContainer from "../components/SectionContainer.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 import BriefCase from "../assets/icons/BriefCase.astro";
 import CodeIcon from "../assets/icons/CodeIcon.astro";
 import Projects from "../components/Projects.astro";
@@ -18,84 +19,123 @@ import Kick from "../assets/icons/Kick.astro";
 ---
 
 <Layout
-  title="Luis Andrés Martínez Estremor – Desarrollador .NET y Angular enfocado en buenas prácticas y software escalable"
-  description="Desarrollador de software desde 2022 con más de 3 años de experiencia sólida en .NET y Angular. Apasionado por las arquitecturas limpias, principios SOLID y patrones de diseño, creando soluciones robustas, escalables y bien estructuradas."
+  title="Luis Andrés Martínez Estremor – Desarrollador Full Stack (.NET, Angular, Java y React)"
+  description="Desarrollador Full Stack con más de 3 años de experiencia en .NET, Angular, Java y React. Construyo aplicaciones web empresariales con arquitectura limpia, APIs y microservicios. Basado en Manizales, Colombia."
 >
-  <main class="px-4">
-    <SectionContainer id="home" class="py-24 pb-16">
-      <img
-        class="rounded-full w-20 h-20 mb-4 object-cover"
-        src="images/luisandres.jpg"
-        alt="Luis Andrés Martínez Estremor - Desarrollador .NET y Angular"
-        width="80"
-        height="80"
-      />
-      <h1
-        class="text-gray-900 dark:text-white text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10 items-start"
+  <main>
+    <SectionContainer id="home" class="pb-12 pt-10 sm:pt-14">
+      <div class="reveal flex flex-col gap-8 sm:flex-row sm:items-center sm:gap-10">
+        <ProfilePhoto />
+
+        <div class="min-w-0 flex-1">
+          <p
+            class="reveal reveal-delay-1 mb-3 inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+          >
+            <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            Disponible para nuevos proyectos
+          </p>
+
+          <h1
+            class="reveal reveal-delay-1 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl"
+          >
+            Luis Andrés Martínez Estremor
+          </h1>
+
+          <p
+            class="reveal reveal-delay-1 mt-2 text-lg font-semibold text-brand-600 dark:text-brand-400 sm:text-xl"
+          >
+            Desarrollador Full Stack · .NET, Angular, Java & React
+          </p>
+
+          <p
+            class="reveal reveal-delay-2 mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-gray-600 dark:text-gray-300"
+          >
+            <span class="font-semibold text-brand-600 dark:text-brand-400"
+              >+3 años de experiencia</span
+            >
+            diseñando y desarrollando aplicaciones web de punta a punta: APIs REST, microservicios y
+            frontends con
+            <span class="font-semibold text-accent-600 dark:text-accent-400">.NET</span>,
+            <span class="font-semibold text-accent-600 dark:text-accent-400">Angular</span>,
+            <span class="font-semibold text-accent-600 dark:text-accent-400">Java</span>
+            y
+            <span class="font-semibold text-accent-600 dark:text-accent-400">React</span>. En Opitech
+            entrego software mantenible con arquitectura limpia, SOLID y patrones de diseño. Monitor
+            de Programación en la Universidad de Caldas. Desde Manizales, Colombia —
+            <span class="font-semibold text-accent-600 dark:text-accent-400"
+              >disponible para proyectos, trabajo remoto y nuevas oportunidades.</span
+            >
+          </p>
+
+          <div class="reveal reveal-delay-3 mt-6 flex flex-wrap items-center gap-2">
+            <SocialBadge href="#projects" variant="primary" size="sm">
+              Ver proyectos
+            </SocialBadge>
+            <SocialBadge href="#contact" size="sm">
+              Contactar
+            </SocialBadge>
+            <SocialBadge href="https://www.youtube.com/@ESTREMORDEV" size="sm" external>
+              Sígueme
+            </SocialBadge>
+          </div>
+        </div>
+      </div>
+
+      <nav
+        id="redes-sociales"
+        class="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-2"
+        aria-label="Redes sociales"
       >
-        Hey, soy Luis Andres Martinez Estremor
-        <a
-          href="https://www.youtube.com/@ESTREMORDEV"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex justify-center items-center"
-        >
-          <Badge>Sigueme</Badge>
-        </a>
-      </h1>
-      <h2 class="text-xl lg:text-2xl text-gray-700 dark:text-gray-300 text-pretty max-w-[700px]">
-        <span class="text-purple-600 dark:text-purple-400 font-semibold"
-          >+3 años de experiencia como Desarrollador.</span
-        >
-        <span class="text-gray-800 dark:text-gray-200"> De Libertad - Sucre - Colombia</span>, 
-        actualmente viviendo en
-        Manizales, Colombia. Especializado en <span class="text-yellow-600 dark:text-yellow-400 font-semibold"
-          >crear aplicaciones Web con tecnologías como Angular y .NET</span
-        >, construyendo soluciones robustas y escalables.
-      </h2>
-      <nav id="redes-sociales" class="flex gap-4 mt-4 flex-wrap">
-        <SocialBadge style="width: 120px;" href="https://www.youtube.com/@ESTREMORDEV">
-          <YouTube class="size-5 md:size-7" />
+        <SocialBadge href="https://www.youtube.com/@ESTREMORDEV" size="sm" external>
+          <YouTube class="size-4 shrink-0" />
           YouTube
         </SocialBadge>
-        <SocialBadge style="width: 40px;" href="https://www.tiktok.com/@estremordev">
-          <TikTok class="size-5 md:size-7" />
+        <SocialBadge href="https://www.tiktok.com/@estremordev" size="sm" external>
+          <TikTok class="size-4 shrink-0" />
           TikTok
         </SocialBadge>
-        <SocialBadge href="https://kick.com/estremordev">
-          <Kick class="size-5 md:size-7" />
+        <SocialBadge href="https://kick.com/estremordev" size="sm" external>
+          <Kick class="size-4 shrink-0" />
           Kick
         </SocialBadge>
-        <SocialBadge href="https://www.facebook.com/estremordev">
-          <Facebook class="size-6 md:size-7" />
+        <SocialBadge href="https://www.facebook.com/estremordev" size="sm" external>
+          <Facebook class="size-4 shrink-0" />
           Facebook
         </SocialBadge>
-        <SocialBadge  href="https://www.linkedin.com/in/martinezestremor/">
-          <LinkedInIcon class="size-5 md:size-7" /> LinkedIn
+        <SocialBadge href="https://www.linkedin.com/in/martinezestremor/" size="sm" external>
+          <LinkedInIcon class="size-4 shrink-0" />
+          LinkedIn
         </SocialBadge>
-        <SocialBadge  href="https://github.com/Luis0714">
-          <GitHubIcon class="size-5 md:size-7" /> GitHub
-        </SocialBadge >
-        <SocialBadge href="mailto:luian.me0714@gmail.com">
-          <SendMailICon class="size-5 md:size-7" /> luian.me0714@gmail.com
+        <SocialBadge href="https://github.com/Luis0714" size="sm" external>
+          <GitHubIcon class="size-4 shrink-0" />
+          GitHub
+        </SocialBadge>
+        <SocialBadge href="mailto:luian.me0714@gmail.com" size="sm">
+          <SendMailICon class="size-4 shrink-0" />
+          Email
         </SocialBadge>
       </nav>
     </SectionContainer>
+
     <SectionContainer id="experience">
-      <h2 class="text-2xl font-semibold mb-8 flex gap-x-4 items-center text-gray-900 dark:text-white">
-        <BriefCase class="size-6" />
-        Experiencia Laboral, Habilidades y Conocimientos
-      </h2>
+      <SectionHeading>
+        <BriefCase slot="icon" class="size-5" />
+        Experiencia laboral
+        <span slot="subtitle">Trayectoria, habilidades y conocimientos</span>
+      </SectionHeading>
       <Experience />
     </SectionContainer>
+
     <SectionContainer id="projects">
-      <h2 class="text-2xl font-semibold mb-8 flex gap-x-4 items-center text-gray-900 dark:text-white">
-        <CodeIcon class="size-6" />
-        Proyectos y Logros
-      </h2>
+      <SectionHeading>
+        <CodeIcon slot="icon" class="size-5" />
+        Proyectos y logros
+        <span slot="subtitle">Trabajo reciente y resultados destacados</span>
+      </SectionHeading>
       <Projects />
     </SectionContainer>
-    <SectionContainer id="contact">
+
+    <SectionContainer id="contact" class="pb-24">
       <Contact />
     </SectionContainer>
   </main>

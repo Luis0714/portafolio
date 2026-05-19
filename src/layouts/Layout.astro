@@ -2,7 +2,6 @@
 import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
 interface Props {
   title: string;
   description: string;
@@ -99,16 +98,6 @@ const {
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/global.css" />
-    <link rel="stylesheet" href="/styles/animations.css" />
-    <link rel="stylesheet" href="/styles/typography.css" />
-    <link rel="stylesheet" href="/styles/components.css" />
-    <link rel="stylesheet" href="/styles/layout.css" />
-    <link rel="stylesheet" href="/styles/sections.css" />
-    <link rel="stylesheet" href="/styles/animations.css" />
-    <link rel="stylesheet" href="/styles/scrollbar.css" />
-    <link rel="stylesheet" href="/styles/scrollbar.css" />
-    <link rel="stylesheet" href="/styles/animations.css" />
-    <link rel="stylesheet" href="/styles/typography.css" />
 
     <!-- Structured Data (JSON-LD) -->
     <script
@@ -206,12 +195,17 @@ const {
       )}
     />
   </head>
-  <body>
+  <body class="text-gray-900 antialiased dark:text-gray-100">
     <div
-      class="absolute top-0 z-[-2] h-screen w-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-neutral-950 dark:to-neutral-900 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] transition-colors duration-300"
+      class="pointer-events-none fixed inset-0 z-[-2] bg-gradient-to-br from-gray-50 via-white to-violet-50/40 dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900"
+      aria-hidden="true"
     >
     </div>
-    <ThemeToggle />
+    <div
+      class="pointer-events-none fixed inset-0 z-[-1] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(139,92,246,0.18),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
     <Header />
     <slot />
     <Footer />
@@ -233,21 +227,10 @@ const {
     scroll-behavior: smooth;
   }
   body {
-    background: #fafafa;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    transition: background-color 0.3s ease;
-  }
-
-  body.dark {
-    background: #050505;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body:not(.light) {
-      background: #050505;
-    }
+    background: transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -256,3 +239,6 @@ const {
     }
   }
 </style>
+
+
+

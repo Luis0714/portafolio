@@ -1,0 +1,29 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="mb-10 flex items-center gap-3" id={id}>
+  <span
+    class="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400"
+    aria-hidden="true"
+  >
+    <slot name="icon" />
+  </span>
+  <div>
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+      <slot />
+    </h2>
+    {
+      Astro.slots.has("subtitle") && (
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <slot name="subtitle" />
+        </p>
+      )
+    }
+  </div>
+</div>
+

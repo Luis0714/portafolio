@@ -1,7 +1,47 @@
 ---
+interface Props {
+  href: string;
+  class?: string;
+  variant?: "default" | "primary" | "compact";
+  size?: "sm" | "md";
+  external?: boolean;
+}
+
+const {
+  href,
+  class: className = "",
+  variant = "default",
+  size = "md",
+  external,
+} = Astro.props;
+const isExternal = external ?? (!href.startsWith("#") && !href.startsWith("mailto:"));
+
+const variants = {
+  default:
+    "border-gray-200/80 bg-white/90 text-gray-800 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-100 dark:hover:border-brand-500/40 dark:hover:bg-brand-500/10 dark:hover:text-white",
+  primary:
+    "border-brand-500/30 bg-brand-600 text-white hover:bg-brand-700 hover:border-brand-600 dark:bg-brand-500 dark:hover:bg-brand-600",
+  compact:
+    "border-gray-200/80 bg-white/90 text-gray-800 hover:border-brand-300 hover:bg-brand-50 dark:border-white/10 dark:bg-white/5 dark:text-gray-100 dark:hover:bg-brand-500/10",
+};
+
+const sizes = {
+  sm: "gap-1.5 px-3 py-1.5 text-xs hover:-translate-y-px",
+  md: "gap-2 px-4 py-2 text-sm md:px-5 md:py-2.5 hover:-translate-y-0.5",
+};
 ---
 
-<a  class={`${Astro.props.class} rounded-full text-gray-800 dark:text-white border border-gray-300 dark:border-white/10 flex justify-center items-center md:py-3 py-2 md:px-6 gap-2 px-3 bg-white/80 dark:bg-white/5 backdrop-blur-sm hover:scale-110 hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 shadow-sm dark:shadow-none`}
-    href={Astro.props.href} target="_blank" rel="noopener noreferrer">
-    <slot />
+<a
+  class:list={[
+    "inline-flex items-center justify-center rounded-full border font-medium backdrop-blur-sm transition-all duration-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50",
+    sizes[size],
+    variants[variant],
+    className,
+  ]}
+  href={href}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+>
+  <slot />
 </a>
+

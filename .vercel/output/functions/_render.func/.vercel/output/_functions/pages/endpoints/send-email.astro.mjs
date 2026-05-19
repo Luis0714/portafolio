@@ -1,106 +1,97 @@
 import { Resend } from 'resend';
 export { renderers } from '../../renderers.mjs';
 
-const response = (body, {
-  status,
-  statusText,
-  headers
-}) => new Response(body, { status, statusText, headers });
-const POST = async ({ request }) => {
-  const body = await request.json();
-  console.log(body);
-  const { email, name, message } = body;
-  const { error } = await sendEmail(name, email, message);
-  return manageResponse(error);
-};
-async function sendEmail(name, email, message) {
-  const key = undefined                                 ;
-  const emailSender = undefined                                          ;
-  const emailReceiver = undefined                                            ;
-  const subject = "Mensaje desde formulario de contacto del portafolio";
-  console.log({ key, emailSender, emailReceiver });
-  const template = getTemplate({ name, email, message });
-  const resend = new Resend(key);
-  const { data, error } = await resend.emails.send({
-    from: emailSender,
-    to: [emailReceiver],
-    subject,
-    html: template
+const prerender = false;
+const MAX_NAME_LENGTH = 100;
+const MAX_MESSAGE_LENGTH = 2e3;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function escapeHtml(value) {
+  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function jsonResponse(body, status) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json" }
   });
-  return { data, error };
 }
-function manageResponse(error) {
-  if (error) {
-    return response("Error al enviar el mensaje", { status: 500 });
-  }
-  return response("Mensaje enviado correctamente", { status: 200 });
-}
-function getTemplate(information) {
+function buildEmailTemplate(name, email, message) {
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeMessage = escapeHtml(message).replace(/\n/g, "<br />");
   return `
-          <!DOCTYPE html>
-          <html lang="es">
-            <head>
-              <meta charset="UTF-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Nuevo mensaje de contacto</title>
-              <style>
-                body {
-                  font-family: 'Helvetica Neue', Arial, sans-serif;
-                  background-color: #f4f4f4;
-                  margin: 0;
-                  padding: 20px;
-                  color: #333;
-                }
-                .container {
-                  max-width: 600px;
-                  margin: 0 auto;
-                  background: #ffffff;
-                  padding: 30px;
-                  border-radius: 8px;
-                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                }
-                h1 {
-                  font-size: 24px;
-                  color: #2c3e50;
-                  text-align: center;
-                  margin-bottom: 20px;
-                }
-                p {
-                  font-size: 16px;
-                  line-height: 1.5;
-                  margin: 10px 0;
-                }
-                .label {
-                  font-weight: bold;
-                  color: #2c3e50;
-                }
-                .footer {
-                  text-align: center;
-                  font-size: 12px;
-                  color: #aaa;
-                  margin-top: 30px;
-                }
-                </style>
-              </head>
-              <body>
-                <div class="container">
-                  <h1>Nuevo mensaje de contacto</h1>
-                  <p><span class="label">Nombre:</span> ${information.name}</p>
-                  <p><span class="label">Correo:</span> ${information.email}</p>
-                  <p><span class="label">Mensaje:</span></p>
-                  <p>${information.message}</p>
-                </div>
-                <div class="footer">
-                  <p>Este mensaje fue enviado desde el formulario de contacto de Estremor dev.</p>
-                </div>
-              </body>
-            </html>
-          `;
+    <!DOCTYPE html>
+    <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nuevo mensaje de contacto</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; color: #333;">
+        <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px;">
+          <h1 style="font-size: 22px; margin-bottom: 20px;">Nuevo mensaje desde estremor.com</h1>
+          <p><strong>Nombre:</strong> ${safeName}</p>
+          <p><strong>Correo:</strong> ${safeEmail}</p>
+          <p><strong>Mensaje:</strong></p>
+          <p>${safeMessage}</p>
+        </div>
+      </body>
+    </html>
+  `;
 }
+const POST = async ({ request }) => {
+  if (request.method !== "POST") {
+    return jsonResponse({ error: "Método no permitido" }, 405);
+  }
+  try {
+    const body = await request.json();
+    const name = String(body.name ?? "").trim();
+    const email = String(body.email ?? "").trim();
+    const message = String(body.message ?? "").trim();
+    const honeypot = String(body.website ?? "").trim();
+    if (honeypot) {
+      return jsonResponse({ ok: true }, 200);
+    }
+    if (!name || !email || !message) {
+      return jsonResponse({ error: "Completa todos los campos obligatorios." }, 400);
+    }
+    if (name.length > MAX_NAME_LENGTH || message.length > MAX_MESSAGE_LENGTH) {
+      return jsonResponse({ error: "El mensaje es demasiado largo." }, 400);
+    }
+    if (!EMAIL_PATTERN.test(email)) {
+      return jsonResponse({ error: "El correo electrónico no es válido." }, 400);
+    }
+    const apiKey = undefined                              ;
+    const emailSender = undefined                            ;
+    const emailReceiver = undefined                              ;
+    if (!apiKey || !emailSender || !emailReceiver) {
+      console.error("Faltan variables de entorno para el envío de correo.");
+      return jsonResponse(
+        { error: "El servicio de correo no está configurado. Intenta más tarde." },
+        503
+      );
+    }
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: emailSender,
+      to: [emailReceiver],
+      replyTo: email,
+      subject: `Contacto portafolio — ${name}`,
+      html: buildEmailTemplate(name, email, message)
+    });
+    if (error) {
+      console.error("Resend error:", error);
+      return jsonResponse({ error: "No se pudo enviar el mensaje. Intenta de nuevo." }, 500);
+    }
+    return jsonResponse({ ok: true }, 200);
+  } catch {
+    return jsonResponse({ error: "Solicitud inválida." }, 400);
+  }
+};
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  POST
+  POST,
+  prerender
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

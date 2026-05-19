@@ -1,3 +1,19 @@
-<section id={Astro.props.id} class={`w-full mx-auto lg:w-[740px] ${Astro.props.class}`}>
-    <slot />
+---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className = "" } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "mx-auto w-full max-w-3xl scroll-mt-20 px-4 py-16 sm:py-20",
+    className,
+  ]}
+>
+  <slot />
 </section>
+

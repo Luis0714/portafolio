@@ -18,10 +18,6 @@
 		{
 			"src": "^\\/endpoints\\/send-email\\/?$",
 			"dest": "_render"
-		},
-		{
-			"src": "^\\/$",
-			"dest": "_render"
 		}
 	]
 }

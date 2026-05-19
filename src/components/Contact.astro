@@ -1,88 +1,166 @@
 ---
-// const handleSubmit = async (event:Event) => {
-//   event.preventDefault();
-//   const formData = new FormData(event.target);
-
-//   // Obtenemos los valores del formulario
-//   const name = formData.get('name');
-//   const email = formData.get('email');
-//   const message = formData.get('message');
-
-//   try {
-//     // Hacemos un fetch a nuestro endpoint
-//     const res = await fetch('/api/send-email', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ name, email, message })
-//     });
-    
-//     const result = await res.json();
-//     console.log('Respuesta del servidor:', result);
-    
-//     if (result.error) {
-//       alert('Ocurrió un error al enviar el correo.');
-//     } else {
-//       alert('Correo enviado con éxito.');
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert('Error al enviar el correo.');
-//   }
-// };
+import SocialBadge from "./SocialBadge.astro";
+import LinkedInIcon from "../assets/icons/LinkedInIcon.astro";
+import SendMailIcon from "../assets/icons/SendMailIcon.astro";
 ---
+
 <section
-  class="bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col h-full mt-6 py-12 px-6 transition-colors duration-200"
+  class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white/70 p-8 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.03] sm:p-10"
+  aria-labelledby="contact-heading"
 >
-  <div class="max-w-md mx-auto">
-    <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-      Hablemos <span class="text-yellow-600 dark:text-yellow-400">ahora</span>
+  <div class="mx-auto max-w-lg">
+    <h2
+      id="contact-heading"
+      class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
+    >
+      Hablemos <span class="text-accent-500 dark:text-accent-400">ahora</span>
     </h2>
-    <p class="mb-8 text-gray-700 dark:text-gray-300 text-pretty">
-      Para solicitar una cotización o si deseas reunirte para un café,
-      contáctame directamente o completa el formulario y te responderé pronto.
+    <p class="mt-3 text-pretty leading-relaxed text-gray-600 dark:text-gray-300">
+      Cuéntame sobre tu proyecto, vacante o colaboración. Respondo en 24–48 horas hábiles.
     </p>
 
-    <form id="contactForm" class="space-y-4" action="mailto:luian.me0714@gmail.com" method="get">
+    <div class="mt-5 flex flex-wrap gap-2">
+      <SocialBadge href="https://www.linkedin.com/in/martinezestremor/" size="sm" external>
+        <LinkedInIcon class="size-4 shrink-0" />
+        LinkedIn
+      </SocialBadge>
+      <SocialBadge href="mailto:luian.me0714@gmail.com" size="sm">
+        <SendMailIcon class="size-4 shrink-0" />
+        luian.me0714@gmail.com
+      </SocialBadge>
+    </div>
+
+    <form id="contactForm" class="mt-8 space-y-5" novalidate>
+      <div class="absolute -left-[9999px]" aria-hidden="true">
+        <label for="website">No completar</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
       <div>
-        <label for="name" class="block mb-2 text-gray-800 dark:text-gray-200 font-medium">Tu Nombre</label>
+        <label for="name" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-200">
+          Tu nombre
+        </label>
         <input
           type="text"
           id="name"
           name="name"
           required
-          class="w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 transition-colors"
+          maxlength="100"
+          autocomplete="name"
+          placeholder="¿Cómo te llamas?"
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-gray-900 transition-colors placeholder:text-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-brand-400 dark:focus:ring-brand-400/20"
         />
       </div>
 
       <div>
-        <label for="email" class="block mb-2 text-gray-800 dark:text-gray-200 font-medium">Tu Correo Electrónico</label>
+        <label for="email" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-200">
+          Tu correo electrónico
+        </label>
         <input
           type="email"
           id="email"
           name="email"
           required
-          class="w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 transition-colors"
+          autocomplete="email"
+          placeholder="tu@email.com"
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-gray-900 transition-colors placeholder:text-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-brand-400 dark:focus:ring-brand-400/20"
         />
       </div>
 
       <div>
-        <label for="message" class="block mb-2 text-gray-800 dark:text-gray-200 font-medium">Tu Mensaje</label>
+        <label
+          for="message"
+          class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-200"
+        >
+          Tu mensaje
+        </label>
         <textarea
           id="message"
           name="message"
           rows="4"
           required
-          class="w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 transition-colors resize-none"
+          maxlength="2000"
+          placeholder="Cuéntame en qué puedo ayudarte..."
+          class="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-gray-900 transition-colors placeholder:text-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-brand-400 dark:focus:ring-brand-400/20"
         ></textarea>
       </div>
 
-      <button
-        id="button"
-        type="submit"
-        class="w-full py-3 rounded-lg bg-purple-600 dark:bg-purple-500 text-white font-bold hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors duration-200 shadow-md hover:shadow-lg"
+      <p
+        id="contact-form-status"
+        class="hidden rounded-xl px-4 py-3 text-sm"
+        role="status"
+        aria-live="polite"
       >
-        ENVIAR MENSAJE
+      </p>
+
+      <button
+        id="contact-submit"
+        type="submit"
+        class="w-full rounded-xl bg-brand-600 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-500 dark:hover:bg-brand-600"
+      >
+        Enviar mensaje
       </button>
     </form>
   </div>
 </section>
+
+<script>
+  (function () {
+    const form = document.getElementById("contactForm") as HTMLFormElement | null;
+    const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement | null;
+    const statusEl = document.getElementById("contact-form-status");
+
+    const setStatus = (message: string, type: "success" | "error") => {
+      if (!statusEl) return;
+
+      statusEl.textContent = message;
+      statusEl.classList.remove("hidden", "bg-emerald-50", "text-emerald-800", "dark:bg-emerald-500/10", "dark:text-emerald-300", "bg-red-50", "text-red-800", "dark:bg-red-500/10", "dark:text-red-300");
+
+      if (type === "success") {
+        statusEl.classList.add("bg-emerald-50", "text-emerald-800", "dark:bg-emerald-500/10", "dark:text-emerald-300");
+      } else {
+        statusEl.classList.add("bg-red-50", "text-red-800", "dark:bg-red-500/10", "dark:text-red-300");
+      }
+    };
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const payload = {
+        name: String(formData.get("name") ?? "").trim(),
+        email: String(formData.get("email") ?? "").trim(),
+        message: String(formData.get("message") ?? "").trim(),
+        website: String(formData.get("website") ?? "").trim(),
+      };
+
+      submitBtn?.setAttribute("disabled", "true");
+      const defaultLabel = submitBtn?.textContent ?? "Enviar mensaje";
+      if (submitBtn) submitBtn.textContent = "Enviando...";
+      statusEl?.classList.add("hidden");
+
+      try {
+        const response = await fetch("/endpoints/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const data = (await response.json()) as { ok?: boolean; error?: string };
+
+        if (!response.ok) {
+          setStatus(data.error ?? "No se pudo enviar el mensaje. Intenta de nuevo.", "error");
+          return;
+        }
+
+        setStatus("¡Mensaje enviado! Te responderé pronto.", "success");
+        form.reset();
+      } catch {
+        setStatus("Error de conexión. Revisa tu red e intenta de nuevo.", "error");
+      } finally {
+        submitBtn?.removeAttribute("disabled");
+        if (submitBtn) submitBtn.textContent = defaultLabel;
+      }
+    });
+  })();
+</script>
