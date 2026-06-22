@@ -1,17 +1,40 @@
 ---
-import AngularIcon from '../assets/icons/AngularIcon.astro';
-import CodeIcon from '../assets/icons/CodeIcon.astro';
-import CshardIcon from '../assets/icons/CshardIcon.astro';
-import FastApiIcon from '../assets/icons/FastApiIcon.astro';
-import FirebaseIcon from '../assets/icons/FirebaseIcon.astro';
-import NodeIcon from '../assets/icons/NodeIcon.astro';
-import PythonIcon from '../assets/icons/PythonIcon.astro';
-import ReactIcon from '../assets/icons/ReactIcon.astro';
-import TailwindIcon from '../assets/icons/TailwindIcon.astro';
-import ViteICon from '../assets/icons/ViteICon.astro';
-import ProjectItem from './ProjectItem.astro';
+import AngularIcon from "../assets/icons/AngularIcon.astro";
+import AzureDevOpsIcon from "../assets/icons/AzureDevOpsIcon.astro";
+import CodeIcon from "../assets/icons/CodeIcon.astro";
+import CshardIcon from "../assets/icons/CshardIcon.astro";
+import FastApiIcon from "../assets/icons/FastApiIcon.astro";
+import FirebaseIcon from "../assets/icons/FirebaseIcon.astro";
+import NodeIcon from "../assets/icons/NodeIcon.astro";
+import OpenAIIcon from "../assets/icons/OpenAIIcon.astro";
+import PostgreSqlIcon from "../assets/icons/PostgreSqlIcon.astro";
+import PythonIcon from "../assets/icons/PythonIcon.astro";
+import ReactIcon from "../assets/icons/ReactIcon.astro";
+import TailwindIcon from "../assets/icons/TailwindIcon.astro";
+import TypeScriptIcon from "../assets/icons/TypeScriptIcon.astro";
+import ViteICon from "../assets/icons/ViteICon.astro";
+import ProjectItem from "./ProjectItem.astro";
 
 const PROJECTS = [
+  {
+    title: "NeosView",
+    description:
+      "NeosView es una plataforma Agile impulsada por inteligencia artificial que se conecta con Azure DevOps para centralizar la gestión del trabajo, simplificar el registro de tiempo y ofrecer visibilidad en tiempo real del sprint. Permite a desarrolladores, Scrum Masters y Product Owners consultar métricas clave, automatizar tareas repetitivas y tomar decisiones más rápidas desde cualquier dispositivo.",
+    image: "images/logo-neosview.png",
+    link: "https://neosview.estremor.com",
+    github: "https://github.com/Luis0714/NeosView",
+    tags: [
+      { name: "Azure DevOps", icon: AzureDevOpsIcon },
+      { name: "OpenAI", icon: OpenAIIcon },
+      { name: "React", icon: ReactIcon },
+      { name: "TypeScript", icon: TypeScriptIcon },
+      { name: "TailwindCSS", icon: TailwindIcon },
+      { name: "Node.js", icon: NodeIcon },
+      { name: "PostgreSQL", icon: PostgreSqlIcon },
+      { name: "OAuth 2.0", icon: CodeIcon },
+      { name: "REST API", icon: CodeIcon },
+    ],
+  },
   {
     title: "Tomansy",
     description:
@@ -51,30 +74,29 @@ const PROJECTS = [
     tags: [
       { name: "Angular", icon: AngularIcon },
       { name: "FastApi", icon: FastApiIcon },
-      {name: "Python", icon: PythonIcon},
+      { name: "Python", icon: PythonIcon },
       { name: "NodeJs", icon: NodeIcon },
       { name: "Websockets", icon: CodeIcon },
     ],
   },
   {
     title: "Diabecare App",
-    description: "Diabecare App es una aplicación multiplataforma para el control de la diabetes. La aplicación permite el registro de glucosa, insulina y alimentos consumidos. La aplicación fue desarrollada con IOnic, Firebase (incluyendo notificaciones push) y FastApi.",
+    description:
+      "Diabecare App es una aplicación multiplataforma para el control de la diabetes. La aplicación permite el registro de glucosa, insulina y alimentos consumidos. La aplicación fue desarrollada con IOnic, Firebase (incluyendo notificaciones push) y FastApi.",
     image: "images/logo-diabecare.webp",
     link: "https://diabecare.netlify.app/",
     github: "https://github.com/Luis0714/diabecareFrontend",
-    tags: [{name: "Ionic", icon: CodeIcon}, 
-            {name: "Firebase", icon: FirebaseIcon} , 
-            {name: "FastApi", icon: FastApiIcon},
-            {name: "Python", icon: PythonIcon},
-            {name: "Notificaciones Push", icon: CodeIcon},
-
+    tags: [
+      { name: "Ionic", icon: CodeIcon },
+      { name: "Firebase", icon: FirebaseIcon },
+      { name: "FastApi", icon: FastApiIcon },
+      { name: "Python", icon: PythonIcon },
+      { name: "Notificaciones Push", icon: CodeIcon },
     ],
-  }
+  },
 ];
 ---
-
 
 <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
   {PROJECTS.map((project) => <ProjectItem {...project} />)}
 </div>
-
